@@ -6,8 +6,6 @@
 #include "./imgui/imgui_internal.h"
 #include "cimgui.h"
 
-
-
 CIMGUI_API ImVec2* ImVec2_ImVec2Nil(void)
 {
     return IM_NEW(ImVec2)();

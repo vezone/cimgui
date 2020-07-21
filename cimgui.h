@@ -33,7 +33,7 @@
 #define CIMGUI_API EXTERN API
 #define CONST const
 
-
+//ImGuiColorEditFlags
 #ifdef _MSC_VER
 typedef unsigned __int64 ImU64;
 #else
@@ -2765,9 +2765,4 @@ CIMGUI_API void ImVector_ImWchar_destroy(ImVector_ImWchar* self);
 CIMGUI_API void ImVector_ImWchar_Init(ImVector_ImWchar* p);
 CIMGUI_API void ImVector_ImWchar_UnInit(ImVector_ImWchar* p);
 
-
 #endif //CIMGUI_INCLUDED
-
-
-
-
