@@ -1,53 +1,46 @@
-group "Dependencies"
-	include "../GLFW"
-
-project "CImGUI"
+project "cimgui"
     kind "StaticLib"
     language "C++"
-    
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    staticruntime "on"
 
-	files
-	{
-        "cimgui.h",
-        "cimgui.cpp",
-        "imgui/imconfig.h",
-        "imgui/imgui.h",
-        "imgui/imgui.cpp",
-        "imgui/imgui_draw.cpp",
-        "imgui/imgui_internal.h",
-        "imgui/imgui_widgets.cpp",
-        "imgui/imstb_rectpack.h",
-        "imgui/imstb_textedit.h",
-        "imgui/imstb_truetype.h",
-        "imgui/imgui_demo.cpp",
-        "imgui/examples/imgui_impl_glfw.h",
-        "imgui/examples/imgui_impl_glfw.cpp"
-    }
-    
-    links
-	{
-		"GLFW",
-		"GL", "GLU",
-		"X11","dl",
-		"Xinerama", "Xcursor", "m",
-		"Xxf86vm", "Xrandr", "pthread", "Xi"
-	}
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin/Intermidiates" .. outputdir .. "/%{prj.name}")
 
     includedirs
     {
-        "imgui",
-        "../GLFW/include"
+       "%{prj.name}/src/"
+    }
+    files
+    {
+       "%{prj.name}/src/cimgui.h",
+       "%{prj.name}/src/cimgui.cpp",
+
+       "%{prj.name}/src/imgui/imgui.h",
+       "%{prj.name}/src/imgui/imgui.cpp",
+       "%{prj.name}/src/imgui/imconfig.h",
+       "%{prj.name}/src/imgui/imstb_rectpack.h",
+       "%{prj.name}/src/imgui/imstb_textedit.h",
+       "%{prj.name}/src/imgui/imstb_truetype.h",
+       "%{prj.name}/src/imgui/imgui_internal.h",
+       "%{prj.name}/src/imgui/imgui_draw.cpp",
+       "%{prj.name}/src/imgui/imgui_widgets.cpp",
+       "%{prj.name}/src/imgui/imgui_demo.cpp",
+       "%{prj.name}/src/imgui/imgui_tables.cpp"
     }
 
     filter "system:linux"
-        systemversion "latest"
-        staticruntime "On"
-    
-	filter "system:windows"
-        systemversion "latest"
-        staticruntime "On"
-        
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+    pic "On"
+    systemversion "latest"
+    staticruntime "On"
+
+    filter "system:windows"
+    systemversion "latest"
+    staticruntime "On"
+
+    filter "configurations:Debug"
+    runtime "Debug"
+    symbols "on"
+
+    filter "configurations:Release"
+    runtime "Release"
+    optimize "on"
